@@ -13,6 +13,7 @@ running
 where the numbers after `recursive_fft.py` are the command line arguments. A
 separate bash script is provided, which runs the script with sample values.
 """
+
 import sys
 
 from sympy import exp, pi, I

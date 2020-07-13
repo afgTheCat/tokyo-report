@@ -19,18 +19,17 @@ def read_coefficients(filename):
     """Reads the coefficients from the file name given"""
     with open(filename) as coefficients_file:
         set_of_raw_coefficients = [line.split() for line in coefficients_file]
-    return [[i, [parse_expr(coefficient) for coefficient in coefficients]]
-            for i, coefficients in enumerate(set_of_raw_coefficients)]
+
+    return [[[parse_expr(coefficient) for coefficient in coefficients]]
+            for coefficients in set_of_raw_coefficients]
 
 
 class TestingClass(unittest.TestCase):
     """Testing the correctness of the recursive fft"""
 
     @parameterized.expand(read_coefficients('coefficients.txt'))
-    def test_fft(self, test_number, coefficients):
-        """Testing each cases separately"""
-        print("\nCoefficient test #{}. Coefficients tested: {}".format(
-            test_number, coefficients))
+    def test_fft(self, coefficients):
+        """Testing for different coefficients"""
         recursive_solution = fft(coefficients)
         sympy_solution = sympy_fft(coefficients)
         self.assertEqual(len(recursive_solution), len(sympy_solution))
@@ -39,4 +38,5 @@ class TestingClass(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    SUITE = unittest.TestLoader().loadTestsFromTestCase(TestingClass)
+    unittest.TextTestRunner(verbosity=2).run(SUITE)

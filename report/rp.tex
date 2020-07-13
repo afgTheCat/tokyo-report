@@ -29,14 +29,53 @@
 \newpage
 
 \section*{Answer to Theme A}
+From the fundamental concepts related to mathematical informatics, we present the \textbf{Cooley–Tukey algorithm}. The algorithm allows us to compute the discrete Fourier transform of a \(n\) long sequence in \(\mathcal{O}(n\log{}n)\) time. Algorithm with such properties are called fast Fourier transform (FFT) algorithms. Among the many variants of the Cooley–Tukey algorithm, the \textbf{radix-2 DIT} is the simplest and most common, and thus we present it in great detail. Other forms of the algorithm, as well as other types of FFT algorithms are also mentioned, but no rigorous construction is given.
 
+\subsection*{Mathematical overview}
+\begin{definition}[Discrete Fourier transform]
+    The discrete Fourier transform (DFT) over the \(n\) dimensional complex field is an invertible linear transformation \(\mathcal{F}: \mathbb{C}^n \to \mathbb{C}^n\). The output of the function for \({(x_k)}_{0 \leq k \leq n - 1}\) is defined by
+    \begin{gather}
+        X_k = \left(\mathcal{F}(x)\right)_k = \sum_{j=0}^{n-1} x_j e^{-\frac{2{\pi}ikj}{n}} =  \sum_{j=0}^{n-1} x_j \left[ \cos\left( \frac{2{\pi}ikj}{n} \right) - i \sin\left( \frac{2{\pi}ikj}{n} \right) \right],
+    \end{gather}
+    where the right side of the equation is due to Euler's formula and the trigonometric properties of sine and cosine.
+\end{definition}
+
+We should mention, that the sign of the exponential is sometimes taken as positive. The resulting equation is equal to the inverse of the previously defined Fourier transformation multiplied by the constant \(n\), that is
+\begin{gather}
+    x_k = \left(\mathcal{F}^{-1}(X)\right)_k = \frac{1}{n}\sum_{j=0}^{n-1}X_j e^{\frac{2{\pi}ikj}{n}}.
+\end{gather}
+With some minor adjustments the Cooley–Tukey algorithm is capable of computing the inverse-DFT of the \(n\) long sequence, so no matter which convention we use, the algorithm remains useful.
+
+We introduce some notation. Given \(x = (x_k)_{0 \leq 2n-1}\), we define \(X^{[0]}\) to be the DFT of the even-indexed terms, while \(X^{[1]}\) to be the DFT of the odd-indexed terms in the sequence. That is
+\begin{gather}
+    X^{[0]}_k = \left(X^{[0]}\right)_k = \left(\mathcal{F}(x_0, x_2, \dots x_{2n-2})\right)_k = \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{2{\pi}ikj}{n}} = \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{4{\pi}ikj}{2n}} \\
+    X^{[1]}_k = \left(X^{[1]}\right)_k = \left(\mathcal{F}(x_1, x_3, \dots x_{2n-1})\right)_k = \sum_{j=0}^{n-1} x_{(2j+1)} e^{-\frac{2{\pi}ikj}{n}} = \sum_{j=0}^{n-1} x_{(2j+1)} e^{-\frac{4{\pi}ikj}{2n}}.
+\end{gather}
+The key observation to make, in order to verify the validity of the algorithm is
+\begin{gather}
+    X_k = \sum_{j=0}^{2n-1} x_j e^{-\frac{2{\pi}ikj}{2n}} = \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{4{\pi}ikj}{2n}} + e^{-\frac{2{\pi}ik}{2n}}\sum_{j=0}^{n-1} x_{(2j+1)} e^{-\frac{4{\pi}ikj}{2n}}.
+\end{gather}
+Thus for \(0 \leq l \leq n-1\) we have
+\begin{gather}
+    X_l = X^{[0]}_l + e^{-\frac{2{\pi}ik}{2n}} X^{[1]}_l \\
+    X_{n+l} = X^{[0]}_l - e^{-\frac{2{\pi}ik}{2n}} X^{[1]}_l,
+\end{gather}
+since
+\begin{gather}
+    \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{4{\pi}i(n+l)j}{2n}} = \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{4{\pi}ilj}{2n}}, \text{ and } e^{-\frac{2{\pi}i(n+l)}{2n}} = -e^{-\frac{2{\pi}il}{2n}}.
+\end{gather}
+\subsection*{Interpretation}
+
+\subsection*{The algorithm}
+This basis of all variants of the Cooley–Tukey algorithm is the divide-and-conquer technique. In the radix-2 case the size of the input has to be a power of two. We may add padding zeros to fit the size constraint.
+\subsection*{Importance and Usage}
 \bibliographystyle{unsrt}
 % \begin{thebibliography}{1}
 
 %   \bibitem{basek2013}
 %   Gopal Basak and Stanislav Volkov.
 %   \newblock Snakes and perturbed random walks
-%   \newblock In {\em Proceedings of the Steklov Institute of Mathematics, vol. 282, no. 1}, pages. 35--44. Springer, 2013
+%   \newblock In {\em Proceedings of the Steklov Institute of Mathematics, vol 282, no. 1}, pages. 35--44. Springer, 2013
 
 % \end{thebibliography}
 \end{document}
