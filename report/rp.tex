@@ -11,6 +11,7 @@
 \usepackage{lipsum}
 \usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage{minted}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lem}[theorem]{Lemma}
@@ -48,27 +49,44 @@ With some minor adjustments, the Cooley–Tukey algorithm is capable of computin
 
 We introduce some notation. Given \(x = (x_k)_{0 \leq 2n-1}\), we define \(X^{[0]}\) to be the DFT of the even-indexed terms, while \(X^{[1]}\) to be the DFT of the odd-indexed terms in the sequence. That is
 \begin{gather}
-    X^{[0]}_k = \left(X^{[0]}\right)_k = \left(\mathcal{F}(x_0, x_2, \dots x_{2n-2})\right)_k = \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{2{\pi}ikj}{n}} = \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{4{\pi}ikj}{2n}} \\
-    X^{[1]}_k = \left(X^{[1]}\right)_k = \left(\mathcal{F}(x_1, x_3, \dots x_{2n-1})\right)_k = \sum_{j=0}^{n-1} x_{(2j+1)} e^{-\frac{2{\pi}ikj}{n}} = \sum_{j=0}^{n-1} x_{(2j+1)} e^{-\frac{4{\pi}ikj}{2n}}.
+    X^{[0]}_k = \left(X^{[0]}\right)_k = \left(\mathcal{F}(x_0, x_2, \dots x_{2n-2})\right)_k = \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{2{\pi}ikj}{n}} = \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{4{\pi}ikj}{2n}} \label{dq:1} \\
+    X^{[1]}_k = \left(X^{[1]}\right)_k = \left(\mathcal{F}(x_1, x_3, \dots x_{2n-1})\right)_k = \sum_{j=0}^{n-1} x_{(2j+1)} e^{-\frac{2{\pi}ikj}{n}} = \sum_{j=0}^{n-1} x_{(2j+1)} e^{-\frac{4{\pi}ikj}{2n}}. \label{dq:2}
 \end{gather}
 The key observation to make, in order to verify the validity of the algorithm is
 \begin{gather}
-    X_k = \sum_{j=0}^{2n-1} x_j e^{-\frac{2{\pi}ikj}{2n}} = \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{4{\pi}ikj}{2n}} + e^{-\frac{2{\pi}ik}{2n}}\sum_{j=0}^{n-1} x_{(2j+1)} e^{-\frac{4{\pi}ikj}{2n}}.
+    X_k = \sum_{j=0}^{2n-1} x_j e^{-\frac{2{\pi}ikj}{2n}} = \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{4{\pi}ikj}{2n}} + e^{-\frac{2{\pi}ik}{2n}}\sum_{j=0}^{n-1} x_{(2j+1)} e^{-\frac{4{\pi}ikj}{2n}}. \label{dq:4}
 \end{gather}
 Thus for \(0 \leq l \leq n-1\) we have
 \begin{gather}
-    X_l = X^{[0]}_l + e^{-\frac{2{\pi}ik}{2n}} X^{[1]}_l \\
-    X_{n+l} = X^{[0]}_l - e^{-\frac{2{\pi}ik}{2n}} X^{[1]}_l,
+    X_l = X^{[0]}_l + e^{-\frac{2{\pi}ik}{2n}} X^{[1]}_l, \text{ and }
+    X_{n+l} = X^{[0]}_l - e^{-\frac{2{\pi}ik}{2n}} X^{[1]}_l, \label{dq:3}
 \end{gather}
 since
 \begin{gather}
     \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{4{\pi}i(n+l)j}{2n}} = \sum_{j=0}^{n-1} x_{(2j)} e^{-\frac{4{\pi}ilj}{2n}}, \text{ and } e^{-\frac{2{\pi}i(n+l)}{2n}} = -e^{-\frac{2{\pi}il}{2n}}.
 \end{gather}
 \subsection*{Interpretation}
+\newpage
 
 \subsection*{The algorithm}
-This basis of all variants of the Cooley–Tukey algorithm is the divide-and-conquer technique. In the radix-2 case the size of the input has to be a power of two. We may add padding zeros to fit the size constraint.
+This basis of all variants of the Cooley–Tukey algorithm is the divide-and-conquer technique. In the radix-2 case, the size of the input has to be a power of two. We may add padding zeros to fit the size constraint. From this point on, we assume that input vectors are of the right size. Given an \({x}_{0\leq k \leq n}\), where \(2\leq n\), \ref{dq:1} and \ref{dq:2} indicate, that the input vector should be divided to two parts: the even-indexed and the odd-indexed terms. Once the DFTs of the split vector are calculated, via recursive calls, the DFT of the input vector can be calculated using \ref{dq:3}. If the input vector is one dimensional, its DFT is itself. The following Python code is a working implementation of the radix-2 case, illustrating the key ideas used, but is not meant to be used in real world applications.
+\inputminted[xleftmargin=20pt, linenos]{python}{./code/recursive_fft.py}
+To evaluate the time complexity of the algorithm, we note that apart from the recursive calls in line 11 and 12, the algorithm is evaluated in \(\Theta(n)\) time, where \(n\) is the length of the input. Using the recurrence relation
+\begin{gather}
+    T(n) = 2T(n/2) + \Theta(n) = \Theta(n\log{}n).
+\end{gather}
+With little modification, the Cooley–Tukey algorithm can compute the inverse-DFT of a transformed vector. This is due to similarly to \ref{dq:4}, we can derive
+\begin{gather}
+    x_k = \sum_{j=0}^{2n-1} X_j e^{\frac{2{\pi}ikj}{2n}} = \sum_{j=0}^{n-1} X_{(2j)} e^{\frac{4{\pi}ikj}{2n}} + e^{\frac{2{\pi}ik}{2n}}\sum_{j=0}^{n-1} X_{(2j+1)} e^{\frac{4{\pi}ikj}{2n}},
+\end{gather}
+so in the 9th line, instead of \(e^{-2{\pi}i/N}\) we have \(e^{2{\pi}i}/N\) for the \(N\) long input, and by multiplying each term of the end result by \(1/n\) given the initial input had size of \(n\), we obtain the original \(x\), within the same time complexity.
 \subsection*{Importance and Usage}
+The FFT is widely used among different fields of engineering, computer science and mathematics. 
+
+Many popular compression methods, such as \texttt{jpeg} or \texttt{webm}, use discrete cosine transforms (DCT). Algorithms that compute DCTs in \(\mathcal{O}(n\log{}n)\) are known as fast cosine transform (FCT) algorithms. While theoretically specialized FCTs have better running time, on modern hardware algorithms computing DCTs via FFTs with some \(\mathcal{O}(n)\) pre- and post-processing steps can be faster. 
+
+Converting polynomials from coefficient representations to point-value representation, one can perform polynomial multiplication in \(\Theta(n)\) time. Having the representation of a degree-bound \(n\) polynomial over the \(n\)th root of unity is the same as having the coefficients transformed. Thus multiplying two polynomials can be done in \(\mathcal{O}(n\log{}n)\) time. Polynomial representation of the Toeplitz matrices also allow us to multiply them within the same time complexity.
+
 \bibliographystyle{unsrt}
 % \begin{thebibliography}{1}
 
