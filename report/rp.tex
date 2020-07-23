@@ -12,6 +12,8 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{minted}
+\usepackage{graphicx}
+% \usepackage{pdfpages}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lem}[theorem]{Lemma}
@@ -75,7 +77,7 @@ To evaluate the time complexity of the algorithm, apart from the recursive calls
 \end{gather}
 With little modification, the Cooley–Tukey algorithm can compute the inverse-DFT of a transformed vector. Similarly to equation \ref{dq:4}, we can derive
 \begin{gather}
-    x_k = \sum_{j=0}^{2n-1} X_j e^{\frac{2{\pi}ikj}{2n}} = \sum_{j=0}^{n-1} X_{(2j)} e^{\frac{4{\pi}ikj}{2n}} + e^{\frac{2{\pi}ik}{2n}}\sum_{j=0}^{n-1} X_{(2j+1)} e^{\frac{4{\pi}ikj}{2n}},
+    x_k = \sum_{j=0}^{2n-1} X_j e^{\frac{2{\pi}ikj}{2n}} = \sum_{j=0}^{n-1} X_{(2j)} e^{\frac{4{\pi}ikj}{2n}} + e^{\frac{2{\pi}ik}{2n}}\sum_{j=0}^{n-1} X_{(2j+1)} e^{\frac{4{\pi}ikj}{2n}}
 \end{gather}
 so in the 9th line, instead of \(e^{-2{\pi}i/N}\) we have \(e^{2{\pi}i/N}\) for the \(N\) long input, and by multiplying each term of the end result by \(1/n\) given the initial input had size of \(n\), we obtain the original \(x\), within the same time complexity.
 \subsection*{Importance and Usage}
@@ -90,8 +92,23 @@ FFts are also widely used in theoretical results. For a long time the \textbf{Sc
 \section*{Answer to Theme B}
 \newpage
 \section*{Answer to Theme C}
+Mathematical informatics can help immensely to prepare for and to handle infectious diseases. After a brief introduction to the subject, we introduce methodologies to combat each stages of an epidemic. We also take into consideration the recent case of COVID-19, and what are the protective measures that can be implemented and its effects. We should also mention that in the case of an outbreak, the tools of bioinformatics are a useful to analyse the pathogens properties and to develop vaccines but we choose to focus on analytical methods to make precautionary decisions and combat its spread.
 
+\subsection*{Basic concepts}
+Compartment models are widely used in modeling infectious diseases. In case of an outbreak, each member of the population is assigned with a label, depending on the individuals relation with the infectious agent. An example would be the labels \textbf{S} for susceptible, \textbf{I} for infectious and \textbf{R} for recovered/removed. Individuals with the same label form a compartment. Individuals may also progress between compartments. The underlying social structure may taken to be homogenous, or can me modeled with small-world networks. Models most use differential equations to simulate the movement of people between different compartments, but stochastic frameworks have also been introduced. 
 
+Generally epidemic containment efforts have four phases: \textbf{preparedness}, \textbf{outbreak investigation}, \textbf{response} and \textbf{evaluation}. These phases contain a wide range of tasks, such as inventory management for essential medical supply and network design for transportation activities during the preparation phase, surveillance system design and implementation during the investigation phase, selection of facilities as PODs (Point of Dispensing) and scheduling of vehicles to be used for transportation during the response phase and identification of bottlenecks during the evaluation phase. Even tough being well prepared is essential, the uncertainties present at an epidemic outbreak dictate the use of real-time solutions. In such an event, decision-makers have to be presented with a wide range of models, that forecast how the epidemic will play out. In the subsequent sections we focus on two key issues they face, the diffusion of the epidemic and the distribution of emergency resources based on demand.
+
+\subsection*{Epidemic modelling}
+Different scenarios dictate the use of different models to forecast the diffusion of the infectious agent. These properties may be due to the nature of of the infectious agent or the policy to be implemented. For example if the agent has incubation time, the appropriate compartment needs to be included in the model. The use of quarantine also creates an additional compartment in the model, but this aspect of the model can be controlled by the acting official. Travel and migration is another aspect which can be controlled. The following diagram showcases the model implemented in Wuhan in the wake of the COVID-19 outbreak.
+\begin{figure}[H]
+    \centering
+    \def\svgwidth{0.7\columnwidth}
+    \input{./figures/model_seiqr.pdf_tex}
+    % \captionsetup{justification=centering,margin=2cm}
+    \caption{Value function on the left, and greedy policy with respect to the calculated value function on the right}
+\end{figure}
+% \includepdf[pages=-]{figures/model_seiqr.pdf}
 
 \bibliographystyle{unsrt}
 % \begin{thebibliography}{1}
