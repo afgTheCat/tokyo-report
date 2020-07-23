@@ -13,7 +13,7 @@
 \usepackage{amsmath}
 \usepackage{minted}
 \usepackage{graphicx}
-% \usepackage{pdfpages}
+\usepackage{caption}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lem}[theorem]{Lemma}
@@ -100,13 +100,13 @@ Compartment models are widely used in modeling infectious diseases. In case of a
 Generally epidemic containment efforts have four phases: \textbf{preparedness}, \textbf{outbreak investigation}, \textbf{response} and \textbf{evaluation}. These phases contain a wide range of tasks, such as inventory management for essential medical supply and network design for transportation activities during the preparation phase, surveillance system design and implementation during the investigation phase, selection of facilities as PODs (Point of Dispensing) and scheduling of vehicles to be used for transportation during the response phase and identification of bottlenecks during the evaluation phase. Even tough being well prepared is essential, the uncertainties present at an epidemic outbreak dictate the use of real-time solutions. In such an event, decision-makers have to be presented with a wide range of models, that forecast how the epidemic will play out. In the subsequent sections we focus on two key issues they face, the diffusion of the epidemic and the distribution of emergency resources based on demand.
 
 \subsection*{Epidemic modelling}
-Different scenarios dictate the use of different models to forecast the diffusion of the infectious agent. These properties may be due to the nature of of the infectious agent or the policy to be implemented. For example if the agent has incubation time, the appropriate compartment needs to be included in the model. The use of quarantine also creates an additional compartment in the model, but this aspect of the model can be controlled by the acting official. Travel and migration is another aspect which can be controlled. The following diagram showcases the model implemented in Wuhan in the wake of the COVID-19 outbreak.
+Different scenarios dictate the use of different models to forecast the diffusion of the infectious agent. These properties may be due to the nature of of the infectious agent or the policy to be implemented. For example if the agent has incubation time, the appropriate compartment needs to be included in the model. The use of quarantine also creates an additional compartment in the model, but this aspect of the model can be controlled by the acting official. Travel and migration is another aspect which can be controlled. The following diagram showcases the model which describes the model many countries have implemented in the wake of the COVID-19 outbreak.
 \begin{figure}[H]
     \centering
     \def\svgwidth{0.7\columnwidth}
     \input{./figures/model_seiqr.pdf_tex}
-    % \captionsetup{justification=centering,margin=2cm}
-    \caption{Value function on the left, and greedy policy with respect to the calculated value function on the right}
+    \captionsetup{justification=centering,margin=2cm}
+    \caption{SEIQRS model}
 \end{figure}
 % \includepdf[pages=-]{figures/model_seiqr.pdf}
 

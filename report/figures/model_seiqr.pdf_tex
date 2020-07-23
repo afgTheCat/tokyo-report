@@ -53,6 +53,6 @@
   \begin{picture}(1,0.2190905)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{model_seiqr.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{./figures/model_seiqr.pdf}}%
   \end{picture}%
 \endgroup%
