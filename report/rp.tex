@@ -122,15 +122,35 @@ During an actual outbreak, the most important task decision-makers have, is to k
 With regards to the recent COVID-19 pandemic, these figures justify the decisions of authorities that implemented strict measures. Declaring curfew and promoting self isolation are some of the most efficient ways to minimize \(\langle k \rangle\), and as a consequence the number of infected people. In Wuhan, following the outbreak, authorities were quick to declare emergency and declared curfew subsequently, which lead to (compared to other countries) to the sharp decline of new cases. More efficient quarantining of individuals who came into contact with the virus also helps immensely. To achieve such a task, large scale testings have to be organized. Following the outbreak, South Korea was quick to ramp up the production of testing kits and has provided drive-trough testing facilities to maximize the number of test conducted, and minimize social contact. These measures also resulted in a sharp decline of new COVID-19 cases on the peninsula. On the other hand, countries that failed to put in place protective measures, have seen a steep upsurge of infected people. The United States government were slow to act, and as a result have had the most cases of COVID-19 infections. Governmental communication were, in our opinion, harmful. The US president repeatedly downplayed the significance of the virus, and has advocated for slowing down testing.
 
 \subsection*{Emergency resource distribution}
-Once an epidemic outbreak has been confirmed, decision-makers face the important issue of ensuring that the appropriate amount of medical supply is provided to health-care facilities. The objective is to periodically replenish such facilities with equipment usually stored in designated stockpiles. As such, the problem relies on techniques from operations research. In this section, we will refer to stockpiles as depots, and facilities in need as demand nodes. The epidemic diffusion models helps us to predict the emergency demand of each demand node during an epidemic. A specific node has demand at time \(t\) denoted by \(d_t\), and we formulate it as
+Once an epidemic outbreak has been confirmed, decision-makers face the important issue of ensuring that the appropriate amount of medical supply is provided to health-care facilities. The objective is to periodically replenish such facilities with equipment usually stored in designated stockpiles. As such, the problem relies on techniques from operations research. In this section, we will refer to stockpiles as depots, and facilities in need as demand nodes. Demand nodes are served by vehicles. There may be restrictions imposed by the models on the number of vehicles housed in each depots and on the capacity of each vehicles.
+
+The epidemic diffusion models helps us to predict the emergency demand of each demand node during an epidemic. A specific node has demand at time \(t\) denoted by \(d_t\), and we formulate it as
 \begin{gather}
     d_t = \langle k \rangle I(t) + Q(t)
 \end{gather}
 with respect to the notation used in previous section. To supply demand, multiple distribution methods have been proposed, of which we cover two, the point-to-point distribution model (PTP mode) and the multi-depots multiple travelling salesmen model (MMTS mode). These two are considered as pure models, and optimize replenishment efforts according to different criterion.
 
 \subsubsection*{PTP mode}
-In this mode, 
+In this mode, there is no restrictions on the number of vehicles in the depots, however each depots have finite capacity. Indirect supplies are note allowed, meaning one may only serve one demand node. The distribution network is described with the graph \(G, O, E, \omega\), where \(O\) represents the depots, \(E\) represents the demand nodes, \(E\) represents the the edge set, and \(\omega\) represents the distance between nodes. We assume no constraints on the number of vehicles in the depots or on the capacity of each vehicle. The objective function to minimize is given by
+\begin{gather}
+    \min \sum_{i\in O} \sum_{j \in V} 2 \omega_{ij}z_{ij}
+\end{gather}
+where \(z_{ij}\) is the decision variable taking values on \({0, 1}\) representing whether demand node \(j\) is served by depot \(i\). Other appropriate restrictions, such as each demand node gets sufficiently supplied and depots serve nodes with no more resources than their capacity, are also assumed. The model described here is a simple case of integer programming, and as such classical algorithms, like the \textbf{cutting-plane method}, can be used to find the optimal solutions.
 
+The PTP mode is a model, that is guaranteed to find the find the best possible solution in terms of delivery efficiency, which means that it gives us a lower bound on how fast demand nodes can be served. In reality however, due to the various constraints overlooked by the model, its implementation in real emergency situations is not possible. Another thing to consider, is that while the emergency nodes will be supplied quickly, the cost of the replenishment, which is proportional to the total distance travelled by the sum of all vehicles, is not taken into consideration. The next model optimizes just that.
+
+\subsubsection*{MMTS mode}
+As opposed to the previous model, the MMTS mode imposes restrictions on the number of vehicles in each depot, as well as on the capacity of the vehicles. We also allow indirect supply of the demand nodes. Using the notation from the previous section, we formulate the objective function as
+\begin{gather}
+    \min\sum_{i\in O \cup V} \sum_{j \in O \cup V} \omega_{ij}z_{ij},
+\end{gather}
+and we also impose other appropriate restrictions, such as the ones from the previous model and constraints on the number of vehicles leaving each depot. The model described is a case of multi-depot, multiple traveling salesmen problem, which has no known efficient solution method. Given the scale of real world emergencies, and the pressure to take immediate action, \textbf{genetic algorithms} have been introduced to obtain approximate solutions. Genetic algorithms are also used to obtain approximate solutions, when the objective function is defined in a different manner, or constraints are defined differently.
+
+The MMTS mode is a model, that minimizes the total distance of travelled by the total number of vehicles, but does not take the timeliness of deliveries into consideration. In an emergency situation quick replenishment of the emergency nodes are essential. The use of this version of the MMTS model is not appropriate. To resolve this problem, alternative versions of the MMTS modes have been described. One such examples tries to optimizes to balance between the cost and the timeliness of the delivery, using the solution of the PTP mode as a benchmark. The alternative objective function may be formulated as
+\begin{gather}
+    \min\sum_{i\in O} \Phi_i,
+\end{gather}
+where \(\Phi_i\) denotes the relative timeliness of delivery time compared to the PTP model, and we also impose further timeliness constraints, like that each delivery has to be between the delivery times obtained by the previous to methods.
 \bibliographystyle{unsrt}
 % \begin{thebibliography}{1}
 
