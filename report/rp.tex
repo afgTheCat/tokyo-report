@@ -21,6 +21,7 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{condition}{Condition}
 
 \title{Research project}
 
@@ -91,14 +92,72 @@ When two degree-bound \(n\) polynomials are represented in the a "extended" poin
 FFts are also widely used in theoretical results. For a long time the \textbf{Schönhage–Strassen algorithm} was the fastest known algorithm for multiplying two large integers. With running time \(\mathcal{O}(n\log{}n\log{}\log{}n)\), it is asymptotically faster than other many traditional multiplication methods, like for example the \textbf{Karatsuba algorithm}, but it only starts to outperform them for numbers with 10000 to 40000 digits, thus it is rarely used in practice. The algorithm employs modular arithmetic instead of the roots of unity (Fourier transforms can be performed in any algebric ring). In 2019 Harvey and van der Hoeven published a \(\mathcal{O}(n\log{}n)\) algorithm, which also builds upon on FFTs. However this is a galactic algorithm, so it only bears theoretical importance.
 
 \section*{Answer to Theme B}
-When studying stochastic processes, the Markov property is a commonly made assumption. This may limit its applicability, as many real life processes have memory. Excited random walks are a class of non-Markovian stochastic processes that generalize other well understood processes. As a novel field of mathematics, results described here will be theoretical in nature, but we also describe some problems and parallels, where models based on ERWs may be helpful. We are concerned with ERWs on the \(d\) dimensional integer lattice, but note that construction of ERWs can be extended to other graphs or continuous time-space processes. As rigorous introduction to the subject is somewhat tedious, we only describe the intuitive meaning behind the ERWs.
+When studying stochastic processes, the Markov property is a commonly made assumption. This may limit its applicability, as many real life processes have memory. Excited random walks are a class of non-Markovian stochastic processes that generalize other well understood processes. As a novel field of mathematics, results described here will be theoretical in nature, but we also describe some problems and parallels, where models based on ERWs may be helpful. Indeed many established results may be viewed from the perspective of ERWs. Here we are concerned with ERWs on the \(d\) dimensional integer lattice, but note that construction of ERWs can be extended to other graphs or continuous time-space processes. As rigorous introduction to the subject is somewhat tedious, we only describe the intuitive meaning behind the ERWs.
 
 \subsection*{Excited random walks}
-ERWs can be thought of as a generalization of simple random walks (biased or symmetric) or random walks in random environments. On each site of the \(d\) dimensional integer lattice, an infinite stack of \textit{cookies} are placed. A cookie is a \(2d\) dimensional vector, that describes a probability distribution, meaning its terms are non-negative and sum up to 1. The walker is placed on the node \(x\), and \textit{consumes} the cookie on top, and moves according to the probability distribution described by the cookie. We call a specific configuration of cookies a \textit{cookie-environment}, meaning that on any site of the integer lattice the cookie of a specific location is well defined. We note the set of all cooke-environment with \(\Omega\), while a specific cookie environment is usually noted with \(\omega\). As per definition, \(\omega \in \Omega\). It is easy to see how certain cookie-environment can be equated to the previously given random walks, by putting cookies of the same kind on top of each other on each site. We may assume some probability distribution on the cookie-environments itself. This further generalizes the model, as if we want to investigate a specific environment \(\omega \in \Omega\), we may condition that \(\mathbb{P}[\omega] = 1\), but also enables us to create convenient assumptions on the model. One such assumption is that the distribution of cookie stacks on each sites are independent of each other, or the weaker assumption that the distribution of cookies are stationary and ergodic with respect to shifts on the lattice. First we present results concerning the more general model, than we focus our attention to specific ERW models.
+ERWs can be thought of as a generalization of simple random walks (biased or symmetric) or random walks in random environments. On each site of the \(d\) dimensional integer lattice, an infinite stack of \textit{cookies} are placed. A cookie is a \(2d\) dimensional vector, that describes a probability distribution, meaning its terms are non-negative and sum up to 1. The walker is placed on the node \(x\), and \textit{consumes} the cookie on top, and moves according to the probability distribution described by the cookie. We call a specific configuration of cookies a \textit{cookie-environment}, meaning that on any site of the integer lattice the cookie of a specific location is well defined. We note the set of all cooke-environment with \(\Omega\), while a specific cookie environment is usually noted with \(\omega\). As per definition, \(\omega \in \Omega\).The probability of moving towards the vector \(e\) at position \(z\) upon the \(n\)th arrival is denoted with \(\omega(z, e, n)\). That is
+\begin{gather}
+    P_{x,\omega}[X_0 = x] = 1 \\
+    P_{x, \omega}[X_{n+1} = X_n + e \mid (X_i)_{0 \leq i \leq n }] = \omega(X_n, e, \# \{ i \in \{0, 1, \dotso, n\} \mid X_i = X_n \} ),
+\end{gather}
+which is called the \textit{quenched} measure. It is easy to see how certain cookie-environment can be equated to the previously given random walks, by putting cookies of the same kind on top of each other on each site. We may assume some probability distribution \(\mathbb{P}\) on the cookie-environments itself. This further generalizes the model. If we want to investigate a specific environment \(\omega \in \Omega\), we may condition that \(\mathbb{P}[\omega] = 1\), but also enables us to create convenient assumptions scenarios, such as the cookie stacks being independent of each other. We also define the \textit{averaged} measure as \(P_x[\cdot]\) as \(\mathbb{E}[P_{x,w}[\cdot]]\).
 
+\subsection*{Restrictions on ERWs}
+As ERWs describe very broad settings for random walks to take place in, we often make convenient assumptions on \(\mathbb{P}\). We list them here, and refer back to them when the results are stated.
+\begin{condition}[IID]\label{IID}
+    This condition holds, if the family of cookie stacks \((\omega(z, \cdot, \cdot))_{z \in \mathbb{Z}^d}\) are independent of each other and identically distributed under \(\mathbb{P}\). This condition is often weakened however as we can see in the next condition. 
+\end{condition}
+\begin{condition}[SE]\label{SE}
+    This condition holds, if the family of cookie stacks \((\omega(z, \cdot, \cdot))_{z \in \mathbb{Z}^d}\) is stationary and ergodic with respect to shifts on \(\mathbb{Z}^d\) under \(\mathbb{P}\). In this context, ergodicity means, that \(\forall \mathcal{A} \in \mathcal{F}\) that is invariant under shifts on \(\mathbb{Z}^d\) satisfies \(\mathbb{P}[A] \in \{0, 1\}\), where \(\mathcal{F}\) is the associated sigma algebra.
+\end{condition}
+\begin{condition}[WEL]\label{WEL}
+    This condition holds, if for any \(z, e\) exists an \(i\) such that the equation \(\omega(z, e, i) > 0\) holds almost surely under \(\mathbb{P}\). This ellipticity condition, along with the next two are often used to escape degenerate situation. We introduce two stricter condition.
+\end{condition}
+\begin{condition}[EL]\label{EL}
+    This condition holds, if for any \(z, e\) and \(i\) the equation \(\omega(z, e, i) > 0\) holds almost surely under \(\mathbb{P}\). 
+\end{condition}
+\begin{condition}[UEL]\label{UEL}
+    This condition holds, if there is a \(\kappa > 0\) such that for all \(z, e\) and \(i\) the equation \(\omega(z, e, i) \leq \kappa\) holds almost surely under \(\mathbb{P}\).
+\end{condition}
+\begin{condition}[BC\(_F\)]\label{BC}
+    Given \(F \subseteq \mathcal{M}\), the condition holds if \(\mathbb{P}\left[ \forall e \in F : \sum_{i \geq 1} \omega(0, e, i) < \infty \right] = 0\). 
+\end{condition}
 \subsection*{Results concerning the general case}
+Some of the most elementary properties of ERWs have been proven with minimal assumptions on \(\mathbb{P}\). The first such result is connected to the range of the ERWs.
+\begin{theorem}[The range of one dimensional ERWs]\label{thm:erwrange}
+    Assume condition \ref{SE} and \ref{EL} holds. Let \(X\) be a random walk on the ERW model. Assume that \ref{BC} also holds for either \(F = \{-1\}\) or for \(F = \{1\}\) but not for both. Then \(\lim_{n\to\infty} X_n \to e \cdot \infty\) \(P_0\) almost surely, where \(e \in F\). If \ref{BC} holds for \(F = \{-1, 1\}\), then the range of the random walk is \(P_0\) almost surely infinite. On the other hand, assume that \ref{BC} does not hold for any \(e \subseteq \mathcal{M}\). Then the range of the random walk is \(P_0\) almost surely finite.
+\end{theorem}
+A similar theorem can be formulated for the multiplying-dimensional case, by strengthening condition \ref{SE} to \ref{IID}.
+\begin{theorem}
+    Assume condition \ref{IID} and \ref{EL} holds. Let \(X\) be a random walk walk in the ERW model. If there is an orthogonal set \(F \subset \mathcal{M}\), such that condition \ref{BC} holds, then then range of the ERW \(P_0\) almost surely is infinite. On the contrary, if no such \(F\) exists, than the range is \(P_0\) almost surely finite.
+\end{theorem}
+The next couple theorems are results regarding transience and recurrence. ERWs are not Markov chains, so the standard definition of recurrence and transience do not apply, however the definitions are analogous of the standard meaning in terms of how many times a walker reaches certain \(z\). As with the range of the ERWs, results concerning the one- and the multi-dimensional ERWs will be discussed separately.
+\begin{theorem}
+    Assume \ref{SE} and \ref{EL}. Then the ERW is \(P_0\) almost surely recurrent or transient or has finite range. This is not the same result as \ref{thm:erwrange}, as in the case when condition \ref{BC} holds for \(\{-1, 1\}\), we only claimed that the range is infinite, not that every \(z \in \mathbb{Z}\) is visited infinitely often.
+\end{theorem}
+In the subsequent sections we turn our attention to some of the more well established models of ERWs.
+\subsection*{The original ERW}
+The original ERW model was introduced by Benjamini and Wilson in . The model is constructed on \(\mathbb{Z}^{d}\). The walker gets biased at the first arrival to a site, in a direction \(e \in \mathcal{E}\), while on subsequent visits to that site the walker jumps to a uniformly chosen neighbor. This model can be generalized by fixing some \(\ell \in \mathbb{R}^d\). In , a \(\mathbb{P}\) is given, such that
+\begin{gather}
+    \exists \lambda \in \mathbb{R}^+: \sum_{e\in\mathcal{E}}\omega(0, e, 1)e\cdot \ell \geq \lambda \quad \mathbb{P}\text{-a.s. and } \\
+    \omega(0, e, i) = \omega(0, -e, i) \quad \mathbb{P}\text{-a.s. for all } e \in \mathcal{E}, i \leq 2.
+\end{gather}
+\subsection*{Any number of \(\ell\)-positive cookies per site}
+This model further generalizes the previous one, by lifting the restriction on the number of non-placebo cookies, still requiring every cookie to induce a drift in the same \(\ell \in \mathbb{Z}^d\setminus\{0\}\) direction. In the one-dimensional case, assumption \ref{SE} is assumed, while in the multi-dimensional case assumptions \ref{IID} and \ref{UEL} are assumed. Then
+\begin{gather}
+    \sum_{e\in\mathcal{E}}\omega(0, e, i)e \cdot \ell \geq 0 \quad \mathbb{P}\text{-a.s. for all } i \in \mathbb{N}.
+\end{gather}
+Cookies satisfying the above equation are called \(\ell\)-positive. Negativity is defined by the opposite inequality.
 
+\subsection*{Boundedly many positive or negative cookies per site}
+It is probably the most widely studied model of ERWs. It was introduced in . We will assume condition \ref{IID} and \ref{WEL} apply, and there is fixed bound after which there are only placebo cookies in the each cookie stack. The model in one dimension is fairly well understood, as a connection with branching processes can be made.
 
+\subsection*{RW perturbated at extrema}
+This random process is one of the first studied non-Markovian random walk. This model was originally not considered in this setting, however can be viewed as an ERW.
+
+\newpage
+
+\section*{Research plan}
 
 \newpage
 
