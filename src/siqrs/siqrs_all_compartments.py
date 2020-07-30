@@ -65,8 +65,7 @@ def display_endemic_progress():
     subplot.set_xlabel('Days from outbreak')
     subplot.set_ylabel('Population')
     subplot.legend(loc='best')
-    plt.show()
-
+    plt.savefig('all_compartments.svg', format="svg", dpi=1200)
 
 if __name__ == "__main__":
     display_endemic_progress()
