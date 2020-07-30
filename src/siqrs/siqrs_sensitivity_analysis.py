@@ -17,7 +17,7 @@ def return_differential_equations(beta=0.000001, k=6):
     # pylint: disable=invalid-name
     mu = 0.1
     d_one = 0.005
-    d_two = 0.001
+    d_two = 0.0001
     tau = 5
     list_of_odes = [
         gamma * y(4) - beta * k * y(0) * y(2),
