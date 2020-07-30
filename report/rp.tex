@@ -124,8 +124,8 @@ To the best our knowledge the last condition has not been described in the liter
 \begin{condition}[BC\(_F\)]\label{BC}
     The condition holds for \(F \subseteq \mathcal{M}\) if \(\mathbb{P}\left[ \forall e \in F : \sum_{i \geq 1} \omega(0, e, i) < \infty \right] = 0\).
 \end{condition}
-\subsection*{Results concerning the general case}
-Some of elementary properties of the ERWs have been proven under relatively weak assumptions on \(\mathbb{P}\). The following results were first given section 2 and 3 of . We start with results connected to the range of the ERWs.
+\subsection*{Results concerning the general case and properties of ERWs}
+Some of elementary properties of the ERWs have been proven under relatively weak assumptions on \(\mathbb{P}\). Results of this section were first given in section 2 and 3 of . We start with results connected to the range of the ERWs.
 \begin{theorem}[The range of one dimensional ERWs]\label{thm:erwrange}
     Assume conditions \ref{SE} and \ref{EL} holds. Assume that \ref{BC} also holds for either \(F = \{-1\}\) or for \(F = \{1\}\) but not for both. Then the range of the walk is infinite, and \(\lim_{n\to\infty} X_n \to e \cdot \infty\) \(P_0\) almost surely, where \(\{e\} = F\). If \ref{BC} holds for \(F = \{-1, 1\}\), then the range of the random walk is \(P_0\) almost surely infinite. If \ref{BC} does not hold for any \(F \subseteq \mathcal{M}\). Then the range of the random walk is \(P_0\) almost surely finite.
 \end{theorem}
@@ -141,25 +141,23 @@ Transience in a direction can also be defined analogously by having \(X_n \cdot 
 \begin{theorem}[Transient and recurrence of the one dimensional ERWs]
     Assume conditions \ref{SE} and \ref{EL}. Then the ERW is \(P_0\) almost surely recurrent or transient or has finite range.
 \end{theorem}
-In the subsequent sections we turn our attention to some of the more specific models of ERWs.
+In terms of ERWs, we say that \(X\) satisfies a law of large numbers, if \(\lim_{n\to\infty} X_n/n = v\) exists. The limit is called the speed of the ERW. The ERW is said to be ballistic, if it satisfies the law of large numbers with non zero speed. In the subsequent sections we turn our attention to some of the more specific models of ERWs.
 \subsection*{The original ERW}
-The original ERW model was introduced by Benjamini and Wilson in . The model is constructed on \(\mathbb{Z}^{d}\). The walker gets biased at the first arrival to a site, in a direction \(e \in \mathcal{M}\), while on subsequent visits it jumps to a uniformly chosen neighbor. This model can be generalized by fixing some \(\ell \in \mathbb{R}^d\), and assume that cookies induce a drift in that direction. In , a \(\mathbb{P}\) is given, such that
+The original ERW model was introduced by Benjamini and Wilson in . The model is constructed on \(\mathbb{Z}^{d}\). The walker gets biased at the first arrival to a site, in a direction \(e \in \mathcal{M}\), while on subsequent visits it jumps to a uniformly chosen neighbor. This model can be generalized by fixing some \(\ell \in \mathbb{R}^d\), and assume that cookies induce a drift in that direction. In , a model satisfying conditions \ref{IID} and \ref{UEL} is given, such that
 \begin{gather}
-    \exists \lambda \in \mathbb{R}^+: \sum_{e\in\mathcal{E}}\omega(0, e, 1)e\cdot \ell \geq \lambda \quad \mathbb{P}\text{-a.s. and } \\
+    \exists \lambda \in \mathbb{R}^+: \sum_{e\in\mathcal{M}}\omega(0, e, 1)e\cdot \ell \geq \lambda \quad \mathbb{P}\text{-a.s. and } \\
     \omega(0, e, i) = \omega(0, -e, i) \quad \mathbb{P}\text{-a.s. for all } e \in \mathcal{E}, i \leq 2.
 \end{gather}
+Given that conditions \ref{IID} and \ref{UEL} hols, the model has shown to be ballistic and its speed is satisfies \(v \cdot l > 0\).
 \subsection*{Any number of \(\ell\)-positive cookies per site}
 This model further generalizes the previous one, by lifting the restriction on the number of non-placebo cookies, still requiring every cookie to induce a drift in the same \(\ell \in \mathbb{Z}^d\setminus\{0\}\) direction. In the one-dimensional case, assumption \ref{SE} is assumed, while in the multi-dimensional case assumptions \ref{IID} and \ref{UEL} are assumed. Then
 \begin{gather}
-    \sum_{e\in\mathcal{E}}\omega(0, e, i)e \cdot \ell \geq 0 \quad \mathbb{P}\text{-a.s. for all } i \in \mathbb{N}.
+    \sum_{e\in\mathcal{M}}\omega(0, e, i)e \cdot \ell \geq 0 \quad \mathbb{P}\text{-a.s. for all } i \in \mathbb{N}.
 \end{gather}
-Cookies satisfying the above equation are called \(\ell\)-positive. Negativity is defined by the opposite inequality.
+If we assume that condition \ref{SE} holds, the one dimensional version of the model has also shown to obey the strong law of large numbers. 
 
 \subsection*{Boundedly many positive or negative cookies per site}
-It is probably the most widely studied model of ERWs. It was introduced in . We will assume condition \ref{IID} and \ref{WEL} apply, and there is fixed bound after which there are only placebo cookies in the each cookie stack. The model in one dimension is fairly well understood, as a connection with branching processes can be made.
-
-\subsection*{RW perturbated at extrema}
-This random process is one of the first studied non-Markovian random walk. This model was originally not considered in this setting, however can be viewed as an ERW.
+This is probably the most widely studied model of ERWs. It was introduced in . Assume condition \ref{IID} and \ref{WEL} holds, and that there is fixed bound after which there are only placebo cookies left in the each cookie stack. In one dimension, using a connection with branching processes, it has been shown that the process obeys the strong law of large numbers. The exact circumstances under which the model is ballistic are also known. Limiting theorems in connection to Brownian motion has also been devised.
 
 \newpage
 
