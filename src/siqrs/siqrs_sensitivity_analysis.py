@@ -45,7 +45,7 @@ def display_sensitivity_analysis():
     list_of_delta = [0.2, 0.3, 0.4, 0.5]
 
     plt.rc('text', usetex=True)
-    plt.rc('font', family='serif')
+    # plt.rc('font', family='serif')
 
     fig = plt.figure()
     subplot_k = fig.add_subplot(1, 2, 1)
