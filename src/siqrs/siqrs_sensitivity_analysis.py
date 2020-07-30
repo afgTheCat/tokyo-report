@@ -9,11 +9,12 @@ import matplotlib.pyplot as plt
 from jitcdde import y, t, jitcdde
 
 
-def return_differential_equations(beta=0.000001, k=6):
+def return_differential_equations(delta, k):
+    """Returns the differential equations"""
     initially_susceptible = 99980
     initially_infected = 20
+    beta = 0.000001
     gamma = 0.0002
-    delta = 0.3
     # pylint: disable=invalid-name
     mu = 0.1
     d_one = 0.005
@@ -39,10 +40,9 @@ def return_differential_equations(beta=0.000001, k=6):
 
 def display_sensitivity_analysis():
     """Display how a typical endemic progresses in time"""
-    delayed_differential_equation = return_differential_equations()
 
     list_of_k = list(range(4, 11, 2))
-    list_of_beta = [0.000001 * i for i in range(1, 5)]
+    list_of_delta = [0.2, 0.3, 0.4, 0.5]
 
     plt.rc('text', usetex=True)
     plt.rc('font', family='serif')
@@ -52,14 +52,15 @@ def display_sensitivity_analysis():
     subplot_k.set_xlabel('Days from outbreak')
     subplot_k.set_ylabel('Population')
 
-    subplot_beta = fig.add_subplot(1, 2, 2)
-    subplot_beta.set_xlabel('Days from outbreak')
-    subplot_beta.set_ylabel('Population')
+    subplot_delta = fig.add_subplot(1, 2, 2)
+    subplot_delta.set_xlabel('Days from outbreak')
+    subplot_delta.set_ylabel('Population')
 
     lines = ['', '-', '--', '-.', ':']
 
     for index, k in enumerate(list_of_k):
-        delayed_differential_equation = return_differential_equations(k=k)
+        delayed_differential_equation = return_differential_equations(
+            0.3, k)
         stoptime = 180
         numpoints = 18000
         times = delayed_differential_equation.t + \
@@ -72,9 +73,8 @@ def display_sensitivity_analysis():
         subplot_k.plot(
             times, infected, lines[index], label=r'\(\langle k \rangle\)' + '={}'.format(k))
 
-    for index, beta in enumerate(list_of_beta):
-        delayed_differential_equation = return_differential_equations(
-            beta=beta)
+    for index, delta in enumerate(list_of_delta):
+        delayed_differential_equation = return_differential_equations(delta, 6)
         stoptime = 180
         numpoints = 18000
         times = delayed_differential_equation.t + \
@@ -84,11 +84,11 @@ def display_sensitivity_analysis():
             data.append(delayed_differential_equation.integrate(time))
         npdata = np.array(data)
         infected = npdata[:, 2]
-        subplot_beta.plot(
-            times, infected, lines[index], label=r'\(\beta\)' + '={}'.format(beta))
+        subplot_delta.plot(
+            times, infected, lines[index], label=r'\(\delta\)' + '={}'.format(delta))
 
     subplot_k.legend()
-    subplot_beta.legend()
+    subplot_delta.legend()
     plt.savefig('sensitivity_analysis.svg', format="svg", dpi=1200)
 
 

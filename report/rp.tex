@@ -184,9 +184,24 @@ We base the model on small-world networks. The numbers of susceptible people at 
     \diff{S}{t} = -\beta\langle k \rangle S(t)I(t) + \gamma R(t).
 \end{gather}
 
-All the other differential equations can be derived analogously, by looking at figure \ref{fig:seiqrs}.Depending on given constants, the model shows, that the described systems of differential equations has a disease free stable equilibrium at point \(P = (s, i, q) = (1-e, 0, 0)\) if \(\beta < \frac{d_1 + \delta}{\langle k \rangle (1-e)}\), where \(e\) is a number between 0 and 1, and the lowercase letters of each compartment denotes the proportion of people in the compartment with respect the whole population. Otherwise if \(\beta >  \frac{d_1 + \delta}{\langle k \rangle (1-e)}\),no disease free stable equilibrium exists. This leads us to an important discovery: the stability of the epidemic relies on parameters \(\langle k \rangle, \delta, d_1\), and on the number of exposed people. Of these parameters, active measures can affect \(\langle k \rangle\) and \(\delta\). We will refer to these as key parameters. If the reader wants to be reassured about the validity the above model (particularly about the usage of \(\langle k \rangle\)), and the analytical results, he/she we refer to the results of mean-field theory and Routh-Hurwiz stability criterion. Obtaining the analytical solution for the compartments remains difficult, and thus we have to rely on computation experiments to extract more meaningful data from model. Running \texttt{SciPy}, with parameters \textbf{TODO}, we obtain the following figure. 
-
+All the other differential equations can be derived analogously, by looking at figure \ref{fig:seiqrs}.Depending on given constants, the model shows, that the described systems of differential equations has a disease free stable equilibrium at point \(P = (s, i, q) = (1-e, 0, 0)\) if \(\beta < \frac{d_1 + \delta}{\langle k \rangle (1-e)}\), where \(e\) is a number between 0 and 1, and the lowercase letters of each compartment denotes the proportion of people in the compartment with respect the whole population. Otherwise if \(\beta >  \frac{d_1 + \delta}{\langle k \rangle (1-e)}\),no disease free stable equilibrium exists. This leads us to an important discovery: the stability of the epidemic relies on parameters \(\langle k \rangle, \delta, d_1\), and on the number of exposed people. Of these parameters, active measures can affect \(\langle k \rangle\) and \(\delta\). We will refer to these as key parameters. If the reader wants to be reassured about the validity the above model (particularly about the usage of \(\langle k \rangle\)), and the analytical results, he/she we refer to the results of mean-field theory and Routh-Hurwiz stability criterion. Obtaining the analytical solution for the compartments remains difficult, and thus we have to rely on computation experiments to extract more meaningful data from model. Running \texttt{SciPy}, with parameters \textbf{TODO}, we obtain the following figure.
+\begin{figure}[H]
+    \centering
+    \def\svgwidth{0.7\columnwidth}
+    \input{./figures/all_compartments.pdf_tex}
+    \captionsetup{justification=centering,margin=2cm}
+    \caption{The SEIQRS model}
+    \label{fig:seiqrs}
+\end{figure}
 During an actual outbreak, the most important task decision-makers have, is to keep the number of infected people to the minimum. With that in mind, leaving all the other parameters fixed, we run sensitivity tests on the key parameters to obtain the following figures.
+\begin{figure}[H]
+    \centering
+    \def\svgwidth{0.7\columnwidth}
+    \input{./figures/sensitivity_analysis.pdf_tex}
+    \captionsetup{justification=centering,margin=2cm}
+    \caption{The SEIQRS model}
+    \label{fig:seiqrs}
+\end{figure}
 
 With regards to the recent COVID-19 pandemic, these figures justify the decisions of authorities that implemented strict measures. Declaring curfew and promoting self isolation are some of the most efficient ways to minimize \(\langle k \rangle\), and as a consequence the number of infected people. In Wuhan, following the outbreak, authorities were quick to declare emergency and declared curfew subsequently, which lead to (compared to other countries) to the sharp decline of new cases. More efficient quarantining of individuals who came into contact with the virus also helps immensely. To achieve such a task, large scale testings have to be organized. Following the outbreak, South Korea was quick to ramp up the production of testing kits and has provided drive-trough testing facilities to maximize the number of test conducted, and minimize social contact. These measures also resulted in a sharp decline of new COVID-19 cases on the peninsula. On the other hand, countries that failed to put in place protective measures, have seen a steep upsurge of infected people. The United States government were slow to act, and as a result have had the most cases of COVID-19 infections. Governmental communication were, in our opinion, harmful. The US president repeatedly downplayed the significance of the virus, and has advocated for slowing down testing.
 

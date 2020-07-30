@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{461.25000577bp}%
+    \setlength{\unitlength}{460.50000376bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,9 +50,9 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.63757326)%
+  \begin{picture}(1,0.63861165)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{sensitivity_analysis.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{./figures/sensitivity_analysis.pdf}}%
   \end{picture}%
 \endgroup%
