@@ -143,34 +143,38 @@ Transience in a direction can also be defined analogously by having \(X_n \cdot 
 \end{theorem}
 In terms of ERWs we say that \(X\) satisfies a law of large numbers if \(\lim_{n\to\infty} X_n/n = v\) exists. This limit is called the speed of the ERW. The ERW is said to be ballistic if it satisfies the law of large numbers with non zero speed. In the subsequent sections we turn our attention to some of the more specific models of ERWs.
 \subsection*{The original ERW}
-The original ERW model was introduced by Benjamini and Wilson in \cite{BW03}. The model is constructed on \(\mathbb{Z}^{d}\). The walker gets biased at the first arrival to a site in a direction \(e \in \mathcal{M}\), while on subsequent visits it jumps to a uniformly chosen neighbor. This model can be generalized by fixing some \(\ell \in \mathbb{R}^d\) and assume that cookies induce a drift in that direction. In \cite{MPRV}, a model satisfying conditions \ref{IID} and \ref{UEL} is given, such that
+The original ERW model was introduced by Benjamini and Wilson in \cite{BW03}. The model is constructed on \(\mathbb{Z}^{d}\). The walker gets biased at the first arrival to a site in a direction \(e \in \mathcal{M}\), while on subsequent visits it jumps to a uniformly chosen neighbor. Cookies that return the uniform distribution are called \textit{placebo}. This model can be generalized by fixing some \(\ell \in \mathbb{R}^d\) and assume that cookies induce a drift in that direction. In \cite{MPRV}, a model satisfying conditions \ref{IID} and \ref{UEL} is given, such that
 \begin{gather}
     \exists \lambda \in \mathbb{R}^+: \sum_{e\in\mathcal{M}}\omega(0, e, 1)e\cdot \ell \geq \lambda \quad \mathbb{P}\text{-a.s. and } \\
     \omega(0, e, i) = \omega(0, -e, i) \quad \mathbb{P}\text{-a.s. for all } e \in \mathcal{E}, i \leq 2.
 \end{gather}
 Given that conditions \ref{IID} and \ref{UEL} hold, in \cite{BR07} the model has shown to be ballistic and its speed satisfies \(v \cdot l > 0\).
 \subsection*{Any number of \(\ell\)-positive cookies per site}
-This model further generalizes the previous one by lifting the restriction on the number of non-placebo cookies, still requiring every cookie to induce a drift in the same \(\ell \in \mathbb{Z}^d\setminus\{0\}\) direction. In the one-dimensional case, we usually assumption \ref{SE} usually hold, while in the multi-dimensional case assumptions \ref{IID} and \ref{UEL} are usually hold. Then
+This model further generalizes the previous one by lifting the restriction on the number of non-placebo cookies, still requiring every cookie to induce a drift in the same \(\ell \in \mathbb{Z}^d\setminus\{0\}\) direction. That is
 \begin{gather}
     \sum_{e\in\mathcal{M}}\omega(0, e, i)e \cdot \ell \geq 0 \quad \mathbb{P}\text{-a.s. for all } i \in \mathbb{N}.
 \end{gather}
-If we assume that condition \ref{SE} holds, the one dimensional version of the model has also shown to obey the strong law of large numbers. 
+Cookies satisfying the above inequality are called  \(\ell\)-positive cookies. If we assume that condition \ref{SE} holds, the one dimensional version of the model has also shown to obey the strong law of large numbers, as shown in \cite{KZ13}.
 
 \subsection*{Boundedly many positive or negative cookies per site}
-This is probably the most widely studied model of ERWs. It was introduced in \cite{BS08}. Assume conditions \ref{IID} and \ref{WEL} hold and that there is fixed bound after which there are only placebo cookies left in the each cookie stack. In one dimension, using a connection with branching processes, it has been shown that the process obeys the strong law of large numbers. The exact circumstances under which the model is ballistic are also known. Limiting theorems in connection to Brownian motion have also been devised.
+This is probably the most widely studied model of ERWs. It was introduced in \cite{BS08}. In this model there is fixed bound after which there are only placebo cookies left in the each cookie stack. Under conditions \ref{IID} and \ref{WEL} in one dimension, using a connection with branching processes, it has been shown that the process obeys the strong law of large numbers. The exact circumstances under which the model is ballistic have also been identified. Limiting theorems in connection to Brownian motion have also been devised. To verify these assessments, we refer to \cite{KZ13} \cite{BS08}, \cite{KZ08} and \cite{MTPV}.
 
 \newpage
 
 \section*{Research plan}
-My main field of interest is probability theory. As the theoretical foundation for reinforcement learning is the Markov decision process process so I have also spent considerable time learning about the subject. As I would not consider it to be a subfield of probability theory, I will write about those separately.
+My main field of interest is probability theory. As the theoretical foundation for reinforcement learning is the Markov decision process I have also spent considerable time learning about the subject. As I do not consider it to be a subfield of probability theory, I will write about them separately.
 \subsection*{Probability theory}
-My main research interest in probability theory are the stochastic processes. I find non-Markovian processes such as excited random walks or reinforced random walks particularly intriguing. From what I understand, neuron firings can be modeled with reinforced random walks. As such I would be very happy if I could use my knowledge of stochastic processes in the pursuit of understanding the human brain. In \textbf{Theme C} I was tasked to describe how mathematical informatics can help preparing for infectious diseases. Tough previously I did not know anything about the subject, I really enjoyed learning about it. The sources I looked into mostly used differential equations when modeling the spread of viruses/bacterias. I believe that stochastic models can be just as useful when modeling such events as using more traditional approaches and would like to continue learning about these techniques (I even created a short simulation based on competing exponential variables, their memorylessness and the distribution of their minimum value to turn the problem into a five dimensional stochastic progress).
+My main research interest in probability theory are the stochastic processes. I find non-Markovian processes such as excited random walks or reinforced random walks particularly intriguing. As neuron firings can be modeled with reinforced random walks my aim is to use my knowledge of stochastic processes in the pursuit of understanding the human brain.
 
-Another branch of probability theory I would like to further learn about is random graphs. Understanding them in my opinion is very useful as they can model interconnected systems such as the internet, forest fires, societies etc., and thus allows us to tackle related problems such as internet routing, fire suppression or prevent the spread of deadly diseases (In my ad hoc simulation I used the Watts–Strogatz model).
+In \textbf{Theme C} I was tasked to describe how mathematical informatics can help preparing for infectious diseases. Tough previously I did not know anything about the subject, I really enjoyed learning about it. The sources I looked into mostly used differential equations when modeling the spread of viruses/bacterias. I am sure that stochastic models can be just as useful when modeling such events as using more traditional approaches and I want to continue learning about these techniques. I even created a short simulation based on competing exponential variables, their memorylessness and the distribution of their minimum value to turn the problem into a five dimensional stochastic progress, but due to limitation on number of pages submittable I did not include it in my answer.
+
+Another branch of probability theory I am planning to study is random graphs theory. They can model interconnected systems such as the internet, forest fires, societies etc., and understanding them allows us to tackle related problems such as internet routing, fire suppression or prevention the spread of deadly diseases. In my simulation I used the Watts–Strogatz model.
+\subsection*{Reinforcement learning}
+
 \newpage
 
 \section*{Answer to Theme C}
-Mathematical informatics can help immensely to prepare for and to handle infectious diseases. Though the tools of bioinformatics are useful to investigate properties of the pathogens and to develop vaccines against it, in this section we choose to focus on other methods to combat epidemics. According to Ming et al, epidemic containment efforts have four phases: \textbf{preparedness}, \textbf{outbreak investigation}, \textbf{response} and \textbf{evaluation}. These phases contain a wide range of tasks, such as inventory management for essential medical supply, surveillance system design, the scheduling of vehicles used to transport medical supply and identification of potential bottlenecks.
+Mathematical informatics can help immensely to prepare for and to handle infectious diseases. Though the tools of bioinformatics are useful to investigate properties of the pathogens and to develop vaccines against it, in this section we choose to focus on other methods to combat epidemics. Epidemic containment efforts have four phases: \textbf{preparedness}, \textbf{outbreak investigation}, \textbf{response} and \textbf{evaluation}. These phases contain a wide range of tasks, such as inventory management for essential medical supply, surveillance system design, the scheduling of vehicles used to transport medical supply and identification of potential bottlenecks.
 
 \subsection*{The SEIQRS model}
 Compartment models are widely used in modeling the spread of infectious diseases. In case of an outbreak, each member of the population is assigned with a label depending on his/her relation with the infectious agent. Individuals with the same label form a compartment. As the epidemic progresses, individuals can also progress between compartments. During the recent COVID-19 outbreak people were divided into 5 groups: susceptible people \((S)\), people during incubation period \((E)\), infectious people \((I)\), quarantined people \((Q)\) and recovered people \((R)\). The name of this model is the \textbf{SEIQRS model}. The underlying social structure may taken to be homogenous, but we use small-world networks in our model. Even tough stochastic frameworks have been introduced, we use the more common deterministic approach of utilizing differential equations to mimic the movement between different compartments. The following figure shows the arrangement of the compartments and how people can move between them.
@@ -204,12 +208,14 @@ As the capacity of healthcare facilities is limited, during an actual outbreak, 
 \end{figure}
 These figures seem to justify the decisions made by authorities that implemented strict measures during the COVID-19 pandemic. Declaring curfew and promoting self-isolation are some of the most efficient ways to minimize \(\langle k \rangle\). In Wuhan, following the outbreak, authorities were quick to declare curfew which lead to the sharp decline of new cases. Many other countries have also called for social-distancing which is aimed to decrease the interactions between people. More efficient quarantining of individuals who came into contact with the virus also helps immensely. This can be achieved via increasing testing capacities and the quality of testing-kits. Following the COVID-19 outbreak, South Korea was quick to organize large scale testings and has provided drive-through testing facilities to minimize social contacts. These measures resulted in a sharp decline of new COVID-19 cases on the peninsula. On the other hand, countries that failed or were late to put protective measures in place have seen a steep upsurge of newly infected people. The United States Government was particularly slow to act and as a result the country has the most cases of COVID-19 infections. The US President had repeatedly downplayed the significance of the virus and had had advocated for slowing down testings.
 
-\subsection*{Other tasks and conclusion}
+\subsection*{Other tasks and acknowledgement}
 Once an epidemic outbreak has been confirmed, having protective measures in place is just one of the many issues public officials face. Another important challenge is to ensure that health-care facilities are provided the appropriate amount of medical supply. Solutions to such problems usually use techniques from operations research. As it turns out, the epidemic diffusion model can help us predict the emergency demand of health-care facilities. A specific such facility has demand at time \(t\) denoted by \(d_t\), and we formulate it as
 \begin{gather}
     d_t = \langle k \rangle I(t) + Q(t)
 \end{gather}
 where \(I\) and \(Q\) refer to the number of infected and quarantined people in the epidemic area. To supply demand, multiple distribution models have been proposed such as the point-to-point distribution model and the multi-depots multiple travelling salesmen model. These two are models considered as pure models, and optimize replenishment efforts according timeliness and cost respectively. In practice, due to their pure nature, they might not be applicable. Other hybrid models  that try to balance between cost and timeliness of delivery have also been proposed. Other arising logistical problems are also connected to the diffusion model.
+
+Writing this section was largely inspired by \cite{LMCJ}. The above figures can be seen as an independent verification of their computations.
 
 \bibliographystyle{unsrt}
 \begin{thebibliography}{1}
@@ -238,6 +244,20 @@ where \(I\) and \(Q\) refer to the number of infected and quarantined people in 
     \newblock On the speed of a cookie random walk
     \newblock In {\em Probability Theory and Related Fields, vol 141, no. 3-4}, pages. 625--645. 2008
 
+    \bibitem{KZ08}
+    E.~Kosygina and M.~P.~W. Zerner
+    \newblock Positively and negatively excited random walks on integers, with branching processes.
+    \newblock In {\em Electronic Journal of Probability, vol 13, no. 64}, pages. 1952--1979. 2008
+
+    \bibitem{MTPV}
+    Mountford, Thomas and Pimentel, Leandro and Valle, Glauco
+    \newblock On the speed of the one-dimensional excited random walk in the transient regime
+    \newblock In {\em Latin American Journal of Probability and Mathematical Statistics, vol 2}. 2006
+
+
+    \bibitem{LMCJ}
+    Liu, Ming and Cao, Jie and Liang, Jing and Chen, MingJun
+    \newblock Epidemic-logistics Modeling: A New Perspective on Operations Research. 2020
 
 %   \bibitem{basek2013}
 %   Gopal Basak and Stanislav Volkov.

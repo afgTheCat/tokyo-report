@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}A working fft implementation\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{k+kn}{from} \PYG{n+nn}{sympy} \PYG{k+kn}{import} \PYG{n}{exp}\PYG{p}{,} \PYG{n}{pi}\PYG{p}{,} \PYG{n}{I}
+
+\PYG{k}{def} \PYG{n+nf}{fft}\PYG{p}{(}\PYG{n}{terms}\PYG{p}{):}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}Implementation of Cooley–Tukey FFT algorithm\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{input\PYGZus{}length} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{terms}\PYG{p}{)}
+    \PYG{k}{if} \PYG{n}{input\PYGZus{}length} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{terms}
+    \PYG{n}{minus\PYGZus{}nth\PYGZus{}root\PYGZus{}of\PYGZus{}unity} \PYG{o}{=} \PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{pi}\PYG{o}{*}\PYG{n}{I}\PYG{o}{/}\PYG{n}{input\PYGZus{}length}\PYG{p}{)}
+    \PYG{n}{running\PYGZus{}root} \PYG{o}{=} \PYG{l+m+mi}{1}
+    \PYG{c+c1}{\PYGZsh{} even\PYGZus{}indexed\PYGZus{}terms = [terms[i] for i in range(0, input\PYGZus{}length, 2)]}
+    \PYG{n}{even\PYGZus{}indexed\PYGZus{}terms} \PYG{o}{=} \PYG{n}{terms}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{::}\PYG{l+m+mi}{2}\PYG{p}{]}
+    \PYG{c+c1}{\PYGZsh{} odd\PYGZus{}indexed\PYGZus{}terms = [terms[i] for i in range(1, input\PYGZus{}length, 2)]}
+    \PYG{n}{odd\PYGZus{}indexed\PYGZus{}terms} \PYG{o}{=} \PYG{n}{terms}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{::}\PYG{l+m+mi}{2}\PYG{p}{]}
+    \PYG{n}{even\PYGZus{}fft} \PYG{o}{=} \PYG{n}{fft}\PYG{p}{(}\PYG{n}{even\PYGZus{}indexed\PYGZus{}terms}\PYG{p}{)}
+    \PYG{n}{odd\PYGZus{}fft} \PYG{o}{=} \PYG{n}{fft}\PYG{p}{(}\PYG{n}{odd\PYGZus{}indexed\PYGZus{}terms}\PYG{p}{)}
+    \PYG{n}{left\PYGZus{}fft}\PYG{p}{,} \PYG{n}{right\PYGZus{}fft} \PYG{o}{=} \PYG{p}{[],} \PYG{p}{[]}
+    \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{input\PYGZus{}length}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)):}
+        \PYG{n}{sub\PYGZus{}expr} \PYG{o}{=} \PYG{n}{running\PYGZus{}root} \PYG{o}{*} \PYG{n}{odd\PYGZus{}fft}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}
+        \PYG{n}{left\PYGZus{}fft}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{even\PYGZus{}fft}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]} \PYG{o}{+} \PYG{n}{sub\PYGZus{}expr}\PYG{p}{)}
+        \PYG{n}{right\PYGZus{}fft}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{even\PYGZus{}fft}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{sub\PYGZus{}expr}\PYG{p}{)}
+        \PYG{n}{running\PYGZus{}root} \PYG{o}{*=} \PYG{n}{minus\PYGZus{}nth\PYGZus{}root\PYGZus{}of\PYGZus{}unity}
+    \PYG{k}{return} \PYG{n}{left\PYGZus{}fft} \PYG{o}{+} \PYG{n}{right\PYGZus{}fft}
+\end{Verbatim}
