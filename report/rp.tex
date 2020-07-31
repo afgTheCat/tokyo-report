@@ -162,14 +162,17 @@ This is probably the most widely studied model of ERWs. It was introduced in \ci
 \newpage
 
 \section*{Research plan}
-My main field of interest is probability theory. As the theoretical foundation for reinforcement learning is the Markov decision process I have also spent considerable time learning about the subject. As I do not consider it to be a subfield of probability theory, I will write about them separately.
+My main field of interest is probability theory. I have also spent considerable time studying the reinforcement learning. As these two fields of mathematics are not closely related, I will write about them separately.
 \subsection*{Probability theory}
 My main research interest in probability theory are the stochastic processes. I find non-Markovian processes such as excited random walks or reinforced random walks particularly intriguing. As neuron firings can be modeled with reinforced random walks my aim is to use my knowledge of stochastic processes in the pursuit of understanding the human brain.
 
 In \textbf{Theme C} I was tasked to describe how mathematical informatics can help preparing for infectious diseases. Tough previously I did not know anything about the subject, I really enjoyed learning about it. The sources I looked into mostly used differential equations when modeling the spread of viruses/bacterias. I am sure that stochastic models can be just as useful when modeling such events as using more traditional approaches and I want to continue learning about these techniques. I even created a short simulation based on competing exponential variables, their memorylessness and the distribution of their minimum value to turn the problem into a five dimensional stochastic progress, but due to limitation on number of pages submittable I did not include it in my answer.
 
-Another branch of probability theory I am planning to study is random graphs theory. They can model interconnected systems such as the internet, forest fires, societies etc., and understanding them allows us to tackle related problems such as internet routing, fire suppression or prevention the spread of deadly diseases. In my simulation I used the Watts–Strogatz model.
+Another branch of probability theory I am planning to study is random graphs theory. Random graphs can model interconnected systems such as the internet, forest fires, societies etc., and understanding them allows us to tackle related problems such as internet routing, fire suppression or prevention the spread of deadly diseases. In my simulation I used the Watts–Strogatz model.
 \subsection*{Reinforcement learning}
+Reinforcement learning is in large part inspired by psychological literature on Pavlovian and instrumental conditioning. The agent in the reinforcement learning framework performs actions with the goal maximizing the \textit{return}.  Increasingly, techniques of reinforcement learning are used in neuroscience to model the brain. I want to study the interdisciplinary dynamics between these two fields. I hope that reinforcement learning combined with my previously stated aim of using stochastic processes can help understanding the brain both on a micro- and on a macro level.
+
+Apart from this I want to explore areas where reinforcement learning can be applicable. One such possibility I want to explore is the efficient emergency supply distribution during disasters. 
 
 \newpage
 
@@ -215,7 +218,7 @@ Once an epidemic outbreak has been confirmed, having protective measures in plac
 \end{gather}
 where \(I\) and \(Q\) refer to the number of infected and quarantined people in the epidemic area. To supply demand, multiple distribution models have been proposed such as the point-to-point distribution model and the multi-depots multiple travelling salesmen model. These two are models considered as pure models, and optimize replenishment efforts according timeliness and cost respectively. In practice, due to their pure nature, they might not be applicable. Other hybrid models  that try to balance between cost and timeliness of delivery have also been proposed. Other arising logistical problems are also connected to the diffusion model.
 
-Writing this section was largely inspired by \cite{LMCJ}. The above figures can be seen as an independent verification of their computations.
+Writing this section was largely inspired by \cite{LMCJ}. The above figures can be seen as an independent verification of their computational results.
 
 \bibliographystyle{unsrt}
 \begin{thebibliography}{1}
