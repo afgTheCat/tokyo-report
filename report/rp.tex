@@ -24,8 +24,7 @@
 \newtheorem{condition}{Condition}
 
 \title{Research project}
-
-\examineenumber{11070}
+\examineenumber{2090}
 \author{Gábor Ádám Fehér}
 
 \begin{document}
@@ -77,19 +76,19 @@ To evaluate the time complexity of the algorithm, apart from the recursive calls
 \begin{gather}
     T(n) = 2T(n/2) + \Theta(n) = \Theta(n\log{}n).
 \end{gather}
-With little modification, the Cooley–Tukey algorithm can compute the inverse-DFT of a transformed vector. Similarly to equation \ref{dq:4}, we can derive
+With little modification, the Cooley–Tukey algorithm can compute the inverse-DFT of a transformed vector. Similarly to equation \ref{dq:4}, we can derive 
 \begin{gather}
     x_k = \sum_{j=0}^{2n-1} X_j e^{\frac{2{\pi}ikj}{2n}} = \sum_{j=0}^{n-1} X_{(2j)} e^{\frac{4{\pi}ikj}{2n}} + e^{\frac{2{\pi}ik}{2n}}\sum_{j=0}^{n-1} X_{(2j+1)} e^{\frac{4{\pi}ikj}{2n}}
 \end{gather}
-so in the 9th line, instead of \(e^{-2{\pi}i/N}\) we have \(e^{2{\pi}i/N}\) for the \(N\) long input, and by multiplying each term of the end result by \(1/n\) given the initial input had size of \(n\), we obtain the original \(x\), within the same time complexity.
+which is the same as the inverse of the Fourier transformation multiplied by \(n\). Thus by writing \(e^{2{\pi}i/N}\) in line 9 instead of \(e^{-2{\pi}i/N}\) and by multiplying each term of the end result by \(1/n\) given that the initial input had size \(n\), we obtain the original \(x\), within the same time complexity.
 \subsection*{Importance and Usage}
-The FFT is widely used among different fields of engineering, computer science and mathematics. 
+The FFT is widely used among different fields of engineering, computer science and mathematics. In signal processing it is used at transforming the input sequence into the frequency domain.
 
 Many popular compression methods, such as \texttt{jpeg} or \texttt{webm}, use discrete cosine transforms (DCT). Algorithms that compute DCTs in \(\mathcal{O}(n\log{}n)\) are known as fast cosine transform (FCT) algorithms. Specialized FCT algorithms exist, that directly compute a vectors DCT, and tough the theoretical running time of such algorithms are better, on modern hardware computing DCTs via FFTs with some \(\mathcal{O}(n)\) pre- and post-processing steps are often faster.
 
 When two degree-bound \(n\) polynomials are represented in the a "extended" point-value form, over \(2n\) distinct points, multiplication can be done in \(\mathcal{O}(n)\) time, by simply multiplying the coefficients. Representing such a polynomial over the \(n\)th root of unity is the same as having the coefficient vectors transformed. Thus multiplying two polynomials can be done in \(\mathcal{O}(n\log{}n)\) time by using FFTs: first transforming the polynomials to their "extended" point value form in \(\mathcal{O}(n\log{}n)\) time, multiplying them in \(\mathcal{O}(n)\), and then transforming back the result to coefficient form. Polynomial representation of the Toeplitz matrices also allow us to multiply them within the same time complexity.
 
-FFts are also widely used in theoretical results. For a long time the \textbf{Schönhage–Strassen algorithm} was the fastest known algorithm for multiplying two large integers. With running time \(\mathcal{O}(n\log{}n\log{}\log{}n)\), it is asymptotically faster than other many traditional multiplication methods, like for example the \textbf{Karatsuba algorithm}, but it only starts to outperform them for numbers with 10000 to 40000 digits, thus it is rarely used in practice. The algorithm employs modular arithmetic instead of the roots of unity (Fourier transforms can be performed in any algebric ring). In 2019 Harvey and van der Hoeven published a \(\mathcal{O}(n\log{}n)\) algorithm, which also builds upon on FFTs. However this is a galactic algorithm, so it only bears theoretical importance.
+FFts are also widely used in theoretical results. For a long time the \textbf{Schönhage–Strassen algorithm} was the fastest known algorithm for multiplying two large integers. With running time \(\mathcal{O}(n\log{}n\log{}\log{}n)\), it is asymptotically faster than other many traditional multiplication methods, like for example the \textbf{Karatsuba algorithm}, but it only starts to outperform them for numbers with 10000 to 40000 digits, thus it is rarely used in practice. The algorithm employs modular arithmetic instead of the roots of unity (Fourier transforms can be performed in any algebraic ring). In 2019 Harvey and van der Hoeven published a \(\mathcal{O}(n\log{}n)\) algorithm, which also builds upon on FFTs. However this is a galactic algorithm, so it only bears theoretical importance.
 
 \section*{Answer to Theme B}
 When studying stochastic processes, the Markov property is a commonly made assumption. As many real life processes have memory, the Markov property can be a limiting. Excited random walks (ERWs) are a class of non-Markovian stochastic processes that generalize other well understood processes. As a novel field of mathematics, results described here are theoretical in nature, meanwhile other non-Markovian processes are already widely used, such as the ARMA model in finance and the fractional Brownian motion in biology and climatology. Some established results can be viewed from the perspective of ERWs. Here we are concerned with ERWs on the \(d\) dimensional integer lattice but the construction of ERWs can be extended to other graphs or continuous time-space processes. As rigorous introduction to the subject is tedious, we only describe the intuitive meaning behind the ERWs.
@@ -170,9 +169,9 @@ In \textbf{Theme C} I was tasked to describe how mathematical informatics can he
 
 Another branch of probability theory I am planning to study is random graphs theory. Random graphs can model interconnected systems such as the internet, forest fires, societies etc., and understanding them allows us to tackle related problems such as internet routing, fire suppression or prevention the spread of deadly diseases. In my simulation I used the Watts–Strogatz model.
 \subsection*{Reinforcement learning}
-Reinforcement learning is in large part inspired by psychological literature on Pavlovian and instrumental conditioning. The agent in the reinforcement learning framework performs actions with the goal maximizing the \textit{return}.  Increasingly, techniques of reinforcement learning are used in neuroscience to model the brain. I want to study the interdisciplinary dynamics between these two fields. I hope that reinforcement learning combined with my previously stated aim of using stochastic processes can help understanding the brain both on a micro- and on a macro level.
+Reinforcement learning is in large part inspired by psychological literature on Pavlovian and instrumental conditioning. The agent in the reinforcement learning framework performs actions with the goal of maximizing the \textit{return}.  Increasingly, techniques of reinforcement learning are used in neuroscience to model the brain. I want to study the interdisciplinary dynamics between these two fields. I hope that reinforcement learning combined with my previously stated aim of using stochastic processes can help understanding the brain both on a micro- and on a macro level.
 
-Apart from this I want to explore areas where reinforcement learning can be applicable. One such possibility I want to explore is the efficient emergency supply distribution during disasters. 
+I also want to explore new areas where reinforcement learning can be applied. One such possible area is the efficient emergency supply distribution during disasters. 
 
 \newpage
 
